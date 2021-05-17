@@ -62,13 +62,13 @@ function stampaProdotto (lista_prodotti, elementoDOM) {
                             <div class="card-body">
                                 <div class="text-center">
                                     <hr>
-                                    <h5 class="card-title">${prodotto.nome}</h5>
-                                    <p class="card-text">${prodotto.descrizione}</p>
+                                    <h5 class="card-title fw-bold">${prodotto.nome}</h5>
+                                    <p class="card-text"><i style="color: #55ba02bb;"  class="fas fa-cannabis"></i> ${prodotto.descrizione}</p>
                                     <span>${prodotto.percentualeCbd}% CBD</span>
                                     <hr>
-                                    <span class="d-block mb-3 text-secondary">${prodotto.prezzo} €</span>
+                                    <span id="prezzo" class="d-block mb-3 text-white">${prodotto.prezzo} €</span>
                                 </div>
-                                <button class="btn btn-success">Acquista</button>
+                                <button class="btn btn-success acquista" data-nome-prodotto="${prodotto.nome}" data-prezzo-prodotto="${prodotto.prezzo}">Acquista</button>
                             </div>
                         </div>
                         `
@@ -77,11 +77,33 @@ function stampaProdotto (lista_prodotti, elementoDOM) {
     })
 }
 
-const singoloProdotto = document.getElementById('prodotti') ; 
+const singoloProdotto = document.getElementById('prodotti'); 
 
 stampaProdotto(weed, singoloProdotto);
 
-console.log(singoloProdotto);
-
 // Implemento carrello
+
+let carrello = [];
+let totaleCarrello = 0;
+
+document.querySelectorAll('.acquista').forEach(button => {
+    button.addEventListener('click' , function () {
+
+        const nome = this.getAttribute("data-nome-prodotto");
+        let prezzo = this.getAttribute("data-prezzo-prodotto");
+        const prodottoCarrello = {nome, prezzo};
+
+        carrello.push(prodottoCarrello);
+
+        totaleCarrello += Number(prezzo);
+
+        const markupCarrello =  `<div class="my-1">${nome} ${prezzo} €</div>`
+
+        document.getElementById("wrap_carrello").insertAdjacentHTML('afterbegin' , markupCarrello);
+        document.querySelector(".totale").innerHTML = (new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'EUR'}).format(totaleCarrello));
+
+    } )
+})
+
+
 

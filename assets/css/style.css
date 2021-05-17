@@ -1,10 +1,38 @@
-/* Utilità */
+/* Regole */
 *{
     font-family: 'Montserrat', sans-serif;
 }
 
+/* Header */
 h1{
     font-size: 3rem;
     font-weight: 800;
 }
 
+/* Carrello */
+.carrello{
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 9;
+    border-radius: .5rem;
+    background-color: #f0fff0bd;
+    border: 1px solid #00800083;
+}
+
+.carrello > ul > li {
+    font-size: .9rem;
+}
+
+.carrello i {
+    vertical-align: bottom;
+}
+/* Main */
+#prezzo{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #55ba02bb;
+    padding: 0.5rem;
+    border-radius: .8rem;
+}
