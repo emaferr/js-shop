@@ -100,7 +100,7 @@ document.querySelectorAll('.acquista').forEach(button => {
         const markupCarrello =  `<div class="my-1">${nome} ${prezzo} €</div>`
 
         document.getElementById("wrap_carrello").insertAdjacentHTML('afterbegin' , markupCarrello);
-        document.querySelector(".totale").innerHTML = (new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'EUR'}).format(totaleCarrello));
+        document.querySelector(".totale").innerHTML = "Totale " + (new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'EUR'}).format(totaleCarrello));
 
     } )
 })
